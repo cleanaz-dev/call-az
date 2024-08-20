@@ -6,7 +6,6 @@ import CreateNote from './AddNoteDialog'
 
 export default async function TicketNotes(ticketId) {
   const notes = await getNotesByTicketId(ticketId)
-  console.log(notes)
   return (
     <div className='flex flex-col bg-slate-100 rounded-md p-4 shadow-sm'>
       {notes.length === 0 ? (

@@ -51,7 +51,7 @@ export default function DashboardTicketPage() {
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
- console.log(tickets)
+
  
  return (
   <div className="flex flex-col h-screen bg-background w-full">

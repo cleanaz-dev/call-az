@@ -27,6 +27,11 @@ import { getTicketById } from "../../../../lib/actions";
 import { Separator } from "../../../../components/ui/separator";
 import TicketNotes from "../../../../components/TicketNotes"
 import { auth } from "@clerk/nextjs/server";
+import CollaborativeRoom from "../../../../components/CollaborativeRoom";
+
+
+
+
 
 export default async function SingleTicketPage({ params }) {
  const { id } = params;
@@ -124,8 +129,9 @@ export default async function SingleTicketPage({ params }) {
            </span>
           </div>
           <div>
-           <h1 className="font-medium">Notes</h1>
-           <TicketNotes ticketId={id} />
+           <h1 className="font-medium">Discussion</h1>
+           {/* <TicketNotes ticketId={id} /> */}
+           <CollaborativeRoom id={id}/>
           </div>
          </div>
          <div>
