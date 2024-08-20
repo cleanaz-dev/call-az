@@ -8,6 +8,7 @@ import {
 import { CollaborativeApp } from './CollaborativeApp';
 
 export default function CollaborativeRoom({id}: {id: string}) {
+  
   return (
     <RoomProvider id={id}>
         <ClientSideSuspense fallback={<div>Loading…</div>}>

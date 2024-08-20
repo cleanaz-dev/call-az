@@ -32,6 +32,8 @@ import { Separator } from "./ui/separator";
 import { ScrollArea } from "./ui/scroll-area";
 import { Badge } from "./ui/badge";
 import { getAllCalls } from "../lib/actions";
+import NewCallDialog from "./NewCallDialog";
+
 import ReactPlayer from "react-player";
 
 export default function DashboardCallsPage() {
@@ -70,10 +72,7 @@ export default function DashboardCallsPage() {
       <h1 className="text-2xl text-primary font-bold">Calls {calls.length}</h1>
      </div>
      <div className="flex items-center gap-4">
-      <Button variant="outline">
-       <PlusIcon className="w-4 h-4 mr-2" />
-       New Call
-      </Button>
+      <NewCallDialog />
      </div>
     </div>
    </header>

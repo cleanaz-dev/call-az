@@ -6,6 +6,7 @@ import { Composer, Thread } from "@liveblocks/react-ui";
 export function CollaborativeApp() {
   const { threads } = useThreads();
 
+
   return (
     <div>
       {threads.map((thread) => (

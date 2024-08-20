@@ -19,7 +19,7 @@ model User {
   name         String
   email        String?  @unique
   subscription String?
-  deptartment  String?
+  department   String?
   role         Role     @default(User)
   isAdmin      Boolean  @default(false)
   createdAt    DateTime @default(now())
@@ -63,6 +63,7 @@ model Call {
   transcripts  String?
   notes        String?
   ticket       Ticket[]
+
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
 }
@@ -85,6 +86,7 @@ enum Role {
   Agent
   Admin
   User
+  Requester
 }
 
 enum Status {
@@ -92,4 +94,10 @@ enum Status {
   Unassigned
   Resolved
   Closed
+}
+
+enum Department {
+  Tier1
+  Tier2
+  RMA
 }

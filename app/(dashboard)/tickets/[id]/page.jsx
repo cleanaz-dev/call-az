@@ -11,11 +11,6 @@ import {
 } from "lucide-react";
 import { ScrollArea } from "../../../../components/ui/scroll-area";
 import {
- Avatar,
- AvatarFallback,
- AvatarImage,
-} from "../../../../components/ui/avatar";
-import {
  Card,
  CardHeader,
  CardFooter,
@@ -33,10 +28,12 @@ import CollaborativeRoom from "../../../../components/CollaborativeRoom";
 
 
 
+
 export default async function SingleTicketPage({ params }) {
  const { id } = params;
  const ticket = await getTicketById(id);
  const { userId } = auth();
+
 
 
  const getDaysOpen = (createdAt) => {
@@ -53,7 +50,7 @@ export default async function SingleTicketPage({ params }) {
     <header className="bg-card px-6 py-4">
      <div className="flex items-center justify-between py-2">
       <div className="flex items-center gap-2">
-       <h1 className="text-2xl text-primary font-bold">Ticket {id}</h1>
+       <h1 className="text-2xl text-primary font-bold">Ticket {id} </h1>
       </div>
      </div>
     </header>
@@ -61,7 +58,7 @@ export default async function SingleTicketPage({ params }) {
      <main className="flex-1 overflow-y-auto grid grid-cols-1 gap-6 p-6">
       <Card className="w-full">
        <CardHeader>
-        <CardTitle>Details</CardTitle>
+        <CardTitle>Details </CardTitle>
         <CardDescription>View ticket details.</CardDescription>
        </CardHeader>
        <CardContent>
@@ -122,7 +119,7 @@ export default async function SingleTicketPage({ params }) {
          </div>
          <Separator />
          <div>
-          <div>
+          <div className="mb-2">
            <h1 className="font-medium">Assigned To</h1>
            <span className="text-muted-foreground">
             {ticket.data.assignedTo?.name ?? "Unassigned"}
