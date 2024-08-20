@@ -26,8 +26,8 @@ const links = [
   { name: 'Calls', href: '/calls', icon: <PhoneCallIcon /> },
   { name: 'Tickets', href: '/tickets', icon: <TicketIcon /> },
   { name: 'Agents', href: '/agents', icon: <Users2 /> },
-  {name: 'Scripts', href: '/scripts', icon: <FileTerminal /> },
-  { name: 'Settings', href: '/settings', icon: <Settings /> },
+  // {name: 'Scripts', href: '/scripts', icon: <FileTerminal /> },
+  // { name: 'Settings', href: '/settings', icon: <Settings /> },
   
 ]
 function Sidebar({ sideBarOpen, toggleSideBar }) {

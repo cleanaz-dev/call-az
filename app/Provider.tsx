@@ -12,7 +12,7 @@ export default function Provider({children}: {children: ReactNode}) {
   const { user: clerkUser } = useUser();
   return (
     <LiveblocksProvider 
-      publicApiKey={"pk_prod_2RHpQ1IUYJfE-3Kw8q9TQr0sJSGHm-sALcaGKuMJGqs9AbCCscjwbuwkGEAUVmpS"}
+      authEndpoint="/api/liveblocks-auth"
       resolveUsers={async ({ userIds }) => {
         const users = await getClerkUsers({userIds});
         console.log(userIds)
