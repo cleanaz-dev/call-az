@@ -17,12 +17,17 @@ export default function NewCallDialog() {
  return (
   <Dialog>
    <DialogTrigger asChild>
-    <Button variant="outline"><Plus /> New Call</Button>
+    <Button 
+      variant="outline"
+      className="animate-pulse border-2 border-primary"
+    >
+      <Plus className="text-muted-foreground"/> New Call
+    </Button>
    </DialogTrigger>
    <DialogContent>
     <DialogHeader>
      <DialogTitle>Create a new call</DialogTitle>
-     <DialogDescription>Please dial number below.</DialogDescription>
+     <DialogDescription>Please dial number below and see call flow example.</DialogDescription>
     </DialogHeader>
     
       <div className="p-6 max-w-md mx-auto bg-slate-100 rounded-md space-y-4">
