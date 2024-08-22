@@ -1,6 +1,5 @@
 import React from "react";
-import {Short_Stack,Anton} from 'next/font/google'
-
+import { Short_Stack, Anton } from "next/font/google";
 
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
@@ -16,17 +15,26 @@ import {
  CardTitle,
  CardFooter,
 } from "./ui/card";
-import { CheckIcon, XIcon, GaugeIcon, PuzzleIcon, BriefcaseIcon, PhoneForwarded } from "lucide-react";
+import {
+ CheckIcon,
+ XIcon,
+ GaugeIcon,
+ PuzzleIcon,
+ BriefcaseIcon,
+ PhoneForwarded,
+} from "lucide-react";
 import LogoImg from "../public/logo.png";
+import { contactFormData } from "../lib/actions";
+import { SubmitNoteButton } from "./SubmitButton";
 
-const shortStack = Short_Stack({ 
-  subsets: ["latin"],
-  weight: "400"
- });
+const shortStack = Short_Stack({
+ subsets: ["latin"],
+ weight: "400",
+});
 const anton = Anton({
-  subsets: ["latin"],
-  weight: "400"
- });
+ subsets: ["latin"],
+ weight: "400",
+});
 
 const links = [
  {
@@ -44,36 +52,41 @@ const links = [
 ];
 
 const features = [
-  {
-   icon: <GaugeIcon className="size-16" />,
-   title: "Instant Responses",
-   description:
-    "Our AI-powered chatbot provides lightning-fast responses, 24/7, ensuring your customers get the help they need immediately.",
-  },
-  {
-   icon: <PuzzleIcon className="size-16" />,
-   title: "Personalized Solutions",
-   description:
-    "Our AI analyzes customer queries and provides tailored solutions, ensuring a seamless and satisfying experience.",
-  },
-  {
-   icon: <BriefcaseIcon className="size-16" />,
-   title: "Increased Efficiency",
-   description:
-    "Streamline your customer service operations with our AI-driven platform, freeing up your team to focus on higher-value tasks.",
-  },
-]
+ {
+  icon: <GaugeIcon className="size-16" />,
+  title: "Instant Responses",
+  description:
+   "Our AI-powered chatbot provides lightning-fast responses, 24/7, ensuring your customers get the help they need immediately.",
+ },
+ {
+  icon: <PuzzleIcon className="size-16" />,
+  title: "Personalized Solutions",
+  description:
+   "Our AI analyzes customer queries and provides tailored solutions, ensuring a seamless and satisfying experience.",
+ },
+ {
+  icon: <BriefcaseIcon className="size-16" />,
+  title: "Increased Efficiency",
+  description:
+   "Streamline your customer service operations with our AI-driven platform, freeing up your team to focus on higher-value tasks.",
+ },
+];
 export default function LandingPage() {
  return (
   <div className="flex flex-col min-h-[100dvh]">
    <header className="px-4 lg:px-6 h-14 flex items-center">
-
-     <Link href="/" className="flex items-center " prefetch={false}>
-            <PhoneForwarded size="40" className='p-1 rounded-xl border-2 border-secondary text-secondary bg-white'/>
-            <p className={`${anton.className} text-xl font-semibold mx-2 tracking-widest`}>CALL AZ <span className='text-secondary'>AI</span></p>
-          </Link>
-     <span className="sr-only">AI Customer Service</span>
-   
+    <Link href="/" className="flex items-center " prefetch={false}>
+     <PhoneForwarded
+      size="40"
+      className="p-1 rounded-xl border-2 border-secondary text-secondary bg-white"
+     />
+     <p
+      className={`${anton.className} text-xl font-semibold mx-2 tracking-widest`}
+     >
+      CALL AZ <span className="text-secondary">AI</span>
+     </p>
+    </Link>
+    <span className="sr-only">AI Customer Service</span>
     <nav className="ml-auto flex gap-4 sm:gap-6 text-secondary">
      {links.map((link, index) => (
       <Link
@@ -130,7 +143,7 @@ export default function LandingPage() {
      </div>
     </section>
 
-    <section className="w-full py-12 md:py-24 lg:py-32 bg-muted">
+    <section className="w-full py-12 md:py-24 lg:py-32 bg-muted-foreground">
      <div className="container px-4 md:px-6">
       <div className="flex flex-col items-center justify-center space-y-4 text-center">
        <div className="space-y-2">
@@ -145,19 +158,22 @@ export default function LandingPage() {
        </div>
       </div>
       <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-3 lg:gap-12">
-      {features.map((feature, index) => (
-          <div key={index} className="flex flex-col items-center justify-center space-y-4">
-           <span className="text-primary">{feature.icon}</span>
-           <div className="grid gap-1 text-center">
-           <h3 className="text-xl font-bold">{feature.title}</h3>
-           <p className="text-slate-50 h-24">{feature.description}</p>
-           </div>
-          </div>
-        ))}
+       {features.map((feature, index) => (
+        <div
+         key={index}
+         className="flex flex-col items-center justify-center space-y-4"
+        >
+         <span className="text-primary">{feature.icon}</span>
+         <div className="grid gap-1 text-center">
+          <h3 className="text-xl font-bold">{feature.title}</h3>
+          <p className="text-slate-50 h-24">{feature.description}</p>
+         </div>
+        </div>
+       ))}
       </div>
      </div>
     </section>
-    <section className="w-full pb-12 md:pb-24 lg:pb-32 bg-muted">
+    <section className="w-full py-12 md:pb-24 lg:pb-32 bg-primary">
      <div className="container px-4 md:px-6">
       <div className="flex flex-col items-center justify-center space-y-4 text-center">
        <div className="space-y-2">
@@ -176,7 +192,7 @@ export default function LandingPage() {
          </CardHeader>
          <CardContent className="py-6 space-y-4">
           <div className="space-y-1">
-           <div className="text-4xl font-bold">$0</div>
+           <div className="text-4xl font-bold">$</div>
            <p className="text-muted-foreground">per month</p>
           </div>
           <ul className="space-y-2 text-muted-foreground">
@@ -209,7 +225,7 @@ export default function LandingPage() {
          </CardHeader>
          <CardContent className="py-6 space-y-4">
           <div className="space-y-1">
-           <div className="text-4xl font-bold">$49</div>
+           <div className="text-4xl font-bold">$$</div>
            <p className="text-muted-foreground">per month</p>
           </div>
           <ul className="space-y-2 text-muted-foreground">
@@ -219,7 +235,7 @@ export default function LandingPage() {
            </li>
            <li className="flex items-center gap-2">
             <CheckIcon className="w-5 h-5 text-green-500" />
-            Unlimited integrations
+            Limited integrations
            </li>
            <li className="flex items-center gap-2">
             <CheckIcon className="w-5 h-5 text-green-500" />
@@ -242,7 +258,7 @@ export default function LandingPage() {
          </CardHeader>
          <CardContent className="py-6 space-y-4">
           <div className="space-y-1">
-           <div className="text-4xl font-bold">$99</div>
+           <div className="text-4xl font-bold">$$$</div>
            <p className="text-muted-foreground">per month</p>
           </div>
           <ul className="space-y-2 text-muted-foreground">
@@ -274,7 +290,7 @@ export default function LandingPage() {
     </section>
     <section className="w-full py-12 md:py-24 lg:py-32 border-t">
      <div className="container px-4 md:px-6">
-      <div className="mx-auto max-w-2xl space-y-4 text-center bg-muted p-6 rounded-xl">
+      <div className="mx-auto max-w-2xl space-y-4 text-center bg-muted-foreground p-6 rounded-xl">
        <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight text-slate-50">
         Get in Touch
        </h2>
@@ -282,7 +298,7 @@ export default function LandingPage() {
         Have a question or need more information? Fill out the form below and
         our team will be in touch.
        </p>
-       <form className="flex flex-col gap-4">
+       <form action={contactFormData} className="flex flex-col gap-4">
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
          <Input
           type="text"
@@ -311,14 +327,21 @@ export default function LandingPage() {
           className="flex"
          />
         </div>
-        <Textarea placeholder="Message" className="flex-1" rows={4} required />
-        <Button
+        <Textarea 
+          type="text" 
+          name="message" 
+          placeholder="Message" 
+          className="flex-1" 
+          rows={4} 
+          required />
+          <SubmitNoteButton />
+        {/* <Button
          type="submit"
          variant="secondary"
          className="w-full bg-white hover:bg-primary hover:text-white transition-colors duration-300"
         >
          Submit
-        </Button>
+        </Button> */}
        </form>
       </div>
      </div>
@@ -348,4 +371,3 @@ export default function LandingPage() {
   </div>
  );
 }
-

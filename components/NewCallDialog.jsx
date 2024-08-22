@@ -11,7 +11,7 @@ import {
  DialogTrigger,
 } from "./ui/dialog";
 import { Button } from "./ui/button";
-import { Plus } from "lucide-react";
+import { Plus,Phone } from "lucide-react";
 
 export default function NewCallDialog() {
  return (
@@ -30,10 +30,11 @@ export default function NewCallDialog() {
      <DialogDescription>Please dial number below and see call flow example.</DialogDescription>
     </DialogHeader>
     
-      <div className="p-6 max-w-md mx-auto bg-slate-100 rounded-md space-y-4">
-  <div className="text-gray-700 font-bold text-lg">
-    437-292-0555
+      <div className="p-6 max-w-md mx-auto bg-green-100 rounded-md space-y-4 border-2">
+  <div className=" flex gap-2 items-center text-gray-700 font-bold text-lg">
+  <Phone /> 437-292-0555
   </div>
+  <p className="text-muted-foreground text-sm">Call Flow Example</p>
   <div className="space-y-2">
     <div className="text-blue-600 font-semibold">
       Assistant:

@@ -111,7 +111,8 @@ export default function DashboardTicketPage() {
            </TableCell>
            <TableHead>{ticket.description}</TableHead>
            <TableCell>
-            <Badge variant={ticket.status === "Closed" ? "secondary" : "primary"}>
+            <Badge 
+              variant={ticket.status === "Closed" || ticket.status === "Resolved" ? "secondary" : "primary"}>
              {ticket.status}
             </Badge>
            </TableCell>
@@ -166,7 +167,7 @@ export default function DashboardTicketPage() {
           <div className="text-muted-foreground">{new Date(selectedTicket.updatedAt).toLocaleString()}</div>
          </div>
         <Separator />
-        <div>
+        {/* <div>
           <div className="font-medium">Notes</div>
           {selectedTicket.Note.length > 0 ? (
             <ul className="list-disc pl-5">
@@ -181,7 +182,7 @@ export default function DashboardTicketPage() {
               No notes available for this ticket.
             </div>
           )}
-        </div>
+        </div> */}
         <div>
           <div className="font-medium">Resolution Status</div>
           <Badge variant="secondary">{selectedTicket.status}</Badge>

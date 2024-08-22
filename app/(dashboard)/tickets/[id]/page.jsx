@@ -20,7 +20,7 @@ import {
 } from "../../../../components/ui/card";
 import { getTicketById } from "../../../../lib/actions";
 import { Separator } from "../../../../components/ui/separator";
-import TicketNotes from "../../../../components/TicketNotes"
+import UpdateTicketDialog from "../../../../components/UpdateTicketDialog";
 import { auth } from "@clerk/nextjs/server";
 import CollaborativeRoom from "../../../../components/CollaborativeRoom";
 
@@ -125,13 +125,13 @@ export default async function SingleTicketPage({ params }) {
             {ticket.data.assignedTo?.name ?? "Unassigned"}
            </span>
           </div>
-          <div>
+          <div className="">
            <h1 className="font-medium">Discussion</h1>
            {/* <TicketNotes ticketId={id} /> */}
-           <CollaborativeRoom id={id}/>
+           <CollaborativeRoom id={id} />
           </div>
          </div>
-         <div>
+         {/* <div>
           <div className="font-medium">Attachments</div>
           <div className="grid gap-2">
            <div className="flex items-center justify-between">
@@ -150,12 +150,12 @@ export default async function SingleTicketPage({ params }) {
             </Button>
            </div>
           </div>
-         </div>
+         </div> */}
         </div>
        </CardContent>
        <CardFooter className="flex justify-end">
-        <Button variant="outline">Update Ticket</Button>
-        <Button className="ml-2">Close Ticket</Button>
+        <UpdateTicketDialog ticketId={id}/>
+        
        </CardFooter>
       </Card>
      </main>
