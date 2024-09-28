@@ -14,8 +14,8 @@ export function CollaborativeApp() {
      thread={thread}
      overrides={{
       THREAD_COMPOSER_PLACEHOLDER: "Reply to this message...",
-      
      }}
+     className="text-white"
     />
    ))}
    {threads.length === 0 && (
@@ -23,6 +23,7 @@ export function CollaborativeApp() {
      overrides={{
       COMPOSER_PLACEHOLDER: "Add a message...",
      }}
+     className="bg-slate-700 rounded-md text-white"
     />
    )}
   </div>

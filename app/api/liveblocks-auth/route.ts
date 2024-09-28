@@ -20,6 +20,7 @@ export async function POST(request: Request) {
       color: getUserColor(id)
     }
   }
+  console.log(user)
 
   const { status, body } = await liveblocks.identifyUser(
     {

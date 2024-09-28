@@ -1,6 +1,9 @@
 import React from "react";
 import { Button } from "../../../../components/ui/button";
 import {
+ AlertCircle,
+ Calendar,
+ Clock,
  DownloadIcon,
  Eye,
  FileIcon,
@@ -23,18 +26,12 @@ import { Separator } from "../../../../components/ui/separator";
 import UpdateTicketDialog from "../../../../components/UpdateTicketDialog";
 import { auth } from "@clerk/nextjs/server";
 import CollaborativeRoom from "../../../../components/CollaborativeRoom";
-
-
-
-
-
+import { Badge } from "../../../../components/ui/badge";
 
 export default async function SingleTicketPage({ params }) {
  const { id } = params;
  const ticket = await getTicketById(id);
  const { userId } = auth();
-
-
 
  const getDaysOpen = (createdAt) => {
   const createdDate = new Date(createdAt);
@@ -44,94 +41,120 @@ export default async function SingleTicketPage({ params }) {
   return diffDays;
  };
 
- return (
+ const priorityColors = {
+  Low: "bg-blue-100 text-blue-800",
+  Medium: "bg-yellow-100 text-yellow-800",
+  High: "bg-red-100 text-red-800",
+ };
 
-   <div className="flex flex-col h-screen bg-background w-full">
-    <header className="bg-card px-6 py-4">
-     <div className="flex items-center justify-between py-2">
-      <div className="flex items-center gap-2">
-       <h1 className="text-2xl text-primary font-bold">Ticket {id} </h1>
-      </div>
+ return (
+  <div className="flex flex-col h-screen  w-full">
+   <header className="px-6 py-4">
+    <div className="flex items-center justify-between py-2">
+     <div className="flex items-center gap-2">
+      <h1 className="text-2xl font-bold text-blue-700">Ticket {id} </h1>
      </div>
-    </header>
-    <ScrollArea>
-     <main className="flex-1 overflow-y-auto grid grid-cols-1 gap-6 p-6">
-      <Card className="w-full">
-       <CardHeader>
-        <CardTitle>Details </CardTitle>
-        <CardDescription>View ticket details.</CardDescription>
-       </CardHeader>
-       <CardContent>
-        <div className="grid gap-6">
+    </div>
+   </header>
+   <ScrollArea>
+    <main className="flex-1 overflow-y-auto grid grid-cols-1 gap-6 p-6">
+     <Card className="w-full bg-slate-800 border-none">
+      <CardHeader>
+       <CardTitle className="text-2xl font-bold text-blue-700">Ticket Details</CardTitle>
+       <CardDescription className="text-zinc-300">View and manage ticket information</CardDescription>
+      </CardHeader>
+      <CardContent>
+       <div className="grid gap-6 md:grid-cols-2">
+        <div className="space-y-4 bg-slate-700 p-2 rounded-sm">
+         {/* Caller Information */}
          <div>
-          <div className="grid gap-2">
-           <div className="grid gap-1">
-            <h1 className="mb-1 font-medium">Caller Details</h1>
-            <div className="flex flex-col gap-1">
-             <span className="flex gap-2 text-muted-foreground">
-              <User size={20} /> {ticket.data.Call.callerName}
-             </span>
-             <span className="flex gap-2 text-muted-foreground">
-              <Mail size={20} /> {ticket.data.Call.callerEmail}
-             </span>
-             <span className="flex gap-2 text-muted-foreground">
-              <Phone size={20} /> {ticket.data.Call.callerPhone}
-             </span>
-            </div>
+          <h2 className="text-lg font-semibold mb-2 text-white">Caller Information</h2>
+          <div className="space-y-2">
+           <div className="flex items-center gap-2 text-sm">
+            <User size={18} className="text-blue-700" />
+            <span className="text-zinc-300">{ticket.data.Call.callerName}</span>
            </div>
-           <div className="grid">
-            <h1 className="font-medium">Description</h1>
-            <span className="text-muted-foreground">
-             {ticket.data.description}
+           <div className="flex items-center gap-2 text-sm">
+            <Mail size={18} className="text-blue-700" />
+            <span className="text-zinc-300">{ticket.data.Call.callerEmail}</span>
+           </div>
+           <div className="flex items-center gap-2 text-sm">
+            <Phone size={18} className="text-blue-700" />
+            <span className="text-zinc-300">{ticket.data.Call.callerPhone}</span>
+           </div>
+          </div>
+         </div>
+         {/* Description */}
+         <div>
+          <h2 className="text-lg font-semibold mb-2 text-white">Description</h2>
+          <p className="text-sm text-zinc-300">
+           {ticket.data.description}
+          </p>
+         </div>
+        </div>
+        <div className="space-y-4 bg-slate-700 p-2 rounded-sm">
+          {/* Ticket Status */}
+         <div>
+          <div className="flex flex-wrap gap-2 mb-2">
+          <h2 className="text-lg font-semibold text-white">Ticket Status </h2> <Badge variant="outline" className="text-sm">
+            {ticket.data.status}
+           </Badge>
+           </div>
+          <div className="space-y-2 text-sm">
+          <div className="flex mb-2 gap-2 ">
+          <User size={18} className="text-blue-700" />
+          <h1 className="font-medium text-zinc-300">Assigned To</h1>
+          
+          <span className="text-muted-foreground">
+           {ticket.data.assignedTo?.name ?? "Unassigned"}
+          </span>
+         </div>
+           <div className="flex items-center gap-2">
+            <Calendar size={18} className="text-blue-700" />
+            <span className="text-zinc-300">
+             Created: {new Date(ticket.data.createdAt).toLocaleDateString()}
             </span>
            </div>
-           <div className="grid">
-            <h1 className="font-medium">Status</h1>
-            <span className="text-muted-foreground">{ticket.data.status}</span>
-           </div>
-           <div className="grid">
-            <h1 className="font-medium">Priority</h1>
-            <span className="text-muted-foreground">
-             {ticket.data.priority}
+           <div className="flex items-center gap-2">
+            <Clock size={18} className="text-blue-700" />
+            <span className="text-zinc-300">
+             Updated: {new Date(ticket.data.updatedAt).toLocaleString()}
             </span>
            </div>
-           <div className="grid">
-            <h1 className="font-medium">Created</h1>
-            <span className="text-muted-foreground">
-             {new Date(ticket.data.createdAt).toLocaleDateString()}
-            </span>
-           </div>
-           <div className="grid">
-            <h1 className="font-medium">Last Updated</h1>
-            <span className="text-muted-foreground">
-             {new Date(ticket.data.updatedAt).toLocaleString()}
-            </span>
-           </div>
-           <div className="grid">
-            <h1 className="font-medium">Days Open</h1>
-            <span className="text-muted-foreground">
+           <div className="flex items-center gap-2">
+            <AlertCircle size={18} className="text-blue-700" />
+            <span className="text-zinc-300">
              {getDaysOpen(ticket.data.createdAt) === 0
               ? "Opened Today"
-              : `${getDaysOpen(ticket.data.createdAt)} days`}
+              : `Open for ${getDaysOpen(ticket.data.createdAt)} days`}
             </span>
            </div>
           </div>
          </div>
-         <Separator />
-         <div>
-          <div className="mb-2">
-           <h1 className="font-medium">Assigned To</h1>
-           <span className="text-muted-foreground">
-            {ticket.data.assignedTo?.name ?? "Unassigned"}
-           </span>
-          </div>
-          <div className="">
-           <h1 className="font-medium">Discussion</h1>
-           {/* <TicketNotes ticketId={id} /> */}
-           <CollaborativeRoom id={id} />
-          </div>
+        </div>
+        {/* <Separator /> */}
+        <div>
+         
+         <div className="">
+          <h1 className="text-lg font-semibold">Discussion</h1>
+          {/* <TicketNotes ticketId={id} /> */}
+          <CollaborativeRoom id={id} />
          </div>
-         {/* <div>
+        </div>
+       </div>
+      </CardContent>
+      <CardFooter className="flex justify-end">
+       <UpdateTicketDialog ticketId={id} />
+      </CardFooter>
+     </Card>
+    </main>
+   </ScrollArea>
+  </div>
+ );
+}
+
+{
+ /* <div>
           <div className="font-medium">Attachments</div>
           <div className="grid gap-2">
            <div className="flex items-center justify-between">
@@ -150,16 +173,5 @@ export default async function SingleTicketPage({ params }) {
             </Button>
            </div>
           </div>
-         </div> */}
-        </div>
-       </CardContent>
-       <CardFooter className="flex justify-end">
-        <UpdateTicketDialog ticketId={id}/>
-        
-       </CardFooter>
-      </Card>
-     </main>
-    </ScrollArea>
-   </div>
- );
+         </div> */
 }

@@ -15,7 +15,7 @@ export function SubmitNoteButton() {
    ) : (
     <Button 
       type="submit"
-      variant="outline"
+      className="bg-white text-blue-700 w-full hover:text-white hover:border hover:border-white transition-all duration-500"
     >
       Submit
     </Button>

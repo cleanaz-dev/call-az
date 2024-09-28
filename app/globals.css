@@ -85,3 +85,14 @@
     background: transparent;
     backdrop-filter: blur(10px);
   }
+
+  /* Styles all default components */
+.lb-root {
+
+  --lb-accent: rgb(28, 79, 216);
+  --lb-spacing: 1em;
+  --lb-radius: 0;
+  --lb-color: #9e2e2e;
+  --lb-background: rgba(103, 143, 216, 0.486)
+  ; /* Change this to the desired text color */
+}

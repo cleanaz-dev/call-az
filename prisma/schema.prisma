@@ -40,7 +40,7 @@ model Ticket {
   updatedAt   DateTime @updatedAt
 
   userId String? @db.ObjectId
-  Call   Call?   @relation(fields: [callId], references: [id])
+  Call   Call?   @relation(fields: [callId], references: [id], onDelete: Cascade)
   callId String? @db.ObjectId
   Note   Note[]
 }
